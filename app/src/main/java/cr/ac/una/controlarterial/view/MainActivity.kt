@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import cr.ac.una.controlarterial.R
 import cr.ac.una.controlarterial.databinding.ActivityMainBinding
 import cr.ac.una.controlarterial.entity.TomaArterial
@@ -36,9 +37,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAnchorView(R.id.fab)
-                .setAction("Action", null).show()
+            navController.navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
         // se inicia el ModelView
         var tomaArterialViewModel = ViewModelProvider(this).get(TomaArterialViewModel::class.java)
