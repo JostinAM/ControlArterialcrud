@@ -36,6 +36,12 @@ class SecondFragment : Fragment() {
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
+
+        binding.button.setOnClickListener{
+            val distolica = binding.editTextNumberDecimal.text
+
+
+        }
     }
 
     override fun onDestroyView() {

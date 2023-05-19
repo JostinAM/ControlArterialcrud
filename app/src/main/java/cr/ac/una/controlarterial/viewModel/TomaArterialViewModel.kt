@@ -15,6 +15,7 @@ class TomaArterialViewModel: ViewModel (){
     var tomasArteriales: LiveData<List<TomaArterial>> = _tomasArteriales
     lateinit var  apiService : TomaArterialDAO
 
+    //CREATE DELETE METHOD
 
     suspend fun listTomaArterial() {
         intService()
@@ -22,9 +23,15 @@ class TomaArterialViewModel: ViewModel (){
         _tomasArteriales.postValue(lista.items)
 
     }
+
+    suspend fun deleteTomaArterial(_uuid: String){
+        intService()
+        apiService.deleteItem(_uuid)
+    }
+
     fun intService(){
         val client = OkHttpClient.Builder()
-            .addInterceptor(AuthInterceptor("U1xIqs39A09cmfpUSpP_Mis54d1ElzUfQx_oyB7wuCccfEkDBQ"))
+            .addInterceptor(AuthInterceptor("oHJU241-zUkUEOKwotIRXSRsOiCmbyHuRc9zQ9c3Pyb7aS_gPg"))
             .build()
         val retrofit = Retrofit.Builder()
             .baseUrl("https://crudapi.co.uk/api/v1/")

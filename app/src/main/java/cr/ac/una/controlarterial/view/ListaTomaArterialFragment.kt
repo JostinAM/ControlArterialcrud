@@ -4,6 +4,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
@@ -79,8 +80,15 @@ class ListaTomaArterialFragment : Fragment() {
                 val position = viewHolder.adapterPosition
                 if (position!=0) {
                     // Elimina el elemento cuando se detecta el deslizamiento hacia la derecha
+                    //! GET UUID AND DELETE
+                    val ins = tomasArteriales[position]
+                    Log.d("ins", ins._uuid.toString())
+
                     (tomasArteriales as MutableList<TomaArterial>).removeAt(position)
                     adapter.updateData(tomasArteriales as ArrayList<TomaArterial>)
+                    deleteToma(ins._uuid)
+
+
                 }
             }
 
@@ -142,6 +150,14 @@ class ListaTomaArterialFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(listView)
 
 
+    }
+
+    private fun deleteToma(_uuid: String?) {
+        GlobalScope.launch(Dispatchers.Main) {
+            if (_uuid != null) {
+                tomaArterialViewModel.deleteTomaArterial(_uuid)
+            }
+        }
     }
 
     override fun onDestroyView() {

@@ -77,6 +77,7 @@ class TomaArterialAdapter(var tomasArteriales: ArrayList<TomaArterial>) :
 
 
         fun bind(tomaArterial: TomaArterial) {
+            //logica para cambiar color
             itemView.setBackgroundColor (Color.LTGRAY)
             sistolicaTextView.text = tomaArterial.sistolica.toString()
             distolicaTextView.text = tomaArterial.distolica.toString()
