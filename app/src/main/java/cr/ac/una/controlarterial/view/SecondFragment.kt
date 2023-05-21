@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cr.ac.una.controlarterial.R
@@ -52,7 +53,6 @@ class SecondFragment : Fragment() {
             val sistolica = binding.editTextNumberDecimal2.text.toString().toInt()
             val ritmo = binding.editTextNumberDecimal3.text.toString().toInt()
 
-            var list = List<TomaArterial>()
 
             var item = TomaArterial(
                 _uuid = null,
@@ -60,12 +60,18 @@ class SecondFragment : Fragment() {
                 sistolica = sistolica,
                 ritmo = ritmo
             )
+            println(item)
 
-            list
+            var items = ArrayList<TomaArterial>()
+
+            items.add(item)
 
             GlobalScope.launch(Dispatchers.Main) {
-                tomaArterialViewModel.listTomaArterial()!!
+                tomaArterialViewModel.postTomaArterial(items)
             }
+
+            //show toast
+            Toast.makeText(context, "Toma guardada", Toast.LENGTH_SHORT).show()
 
         }
     }

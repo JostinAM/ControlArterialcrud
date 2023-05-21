@@ -29,6 +29,12 @@ class TomaArterialViewModel: ViewModel (){
         apiService.deleteItem(_uuid)
     }
 
+    suspend fun postTomaArterial(tomaArterial: List<TomaArterial>){
+        intService()
+        apiService.createItem(tomaArterial)
+
+    }
+
     fun intService(){
         val client = OkHttpClient.Builder()
             .addInterceptor(AuthInterceptor("oHJU241-zUkUEOKwotIRXSRsOiCmbyHuRc9zQ9c3Pyb7aS_gPg"))

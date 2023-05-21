@@ -78,7 +78,18 @@ class TomaArterialAdapter(var tomasArteriales: ArrayList<TomaArterial>) :
 
         fun bind(tomaArterial: TomaArterial) {
             //logica para cambiar color
-            itemView.setBackgroundColor (Color.LTGRAY)
+
+            if (tomaArterial.sistolica < 120 && tomaArterial.distolica < 80)
+                itemView.setBackgroundColor (Color.GREEN)
+            else if (tomaArterial.sistolica in 120..129 && tomaArterial.distolica < 80)
+                itemView.setBackgroundColor (Color.YELLOW)
+            else if (tomaArterial.sistolica in 130 .. 139 && tomaArterial.distolica in 80 .. 89)
+                itemView.setBackgroundColor (Color.rgb(255,165,0))
+            else if (tomaArterial.sistolica in 140..180 && tomaArterial.distolica in 90 .. 120)
+                itemView.setBackgroundColor (Color.rgb(139, 0, 0))
+            else if (tomaArterial.sistolica > 180 && tomaArterial.distolica > 120)
+                itemView.setBackgroundColor (Color.RED)
+
             sistolicaTextView.text = tomaArterial.sistolica.toString()
             distolicaTextView.text = tomaArterial.distolica.toString()
             ritmoTextView.text = tomaArterial.ritmo.toString()
